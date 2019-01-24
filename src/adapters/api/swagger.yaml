@@ -1,0 +1,260 @@
+---
+swagger: "2.0"
+info:
+  description: "This service manage the food requests"
+  version: "0.1.0"
+  title: "d-backend"
+  termsOfService: "terms"
+  contact:
+    name: "ricardo pieroni costa"
+    url: "https://github.com/RicardoPieroni"
+    email: "ricardo_pieronicosta@hotmail.com"
+  license:
+    name: "MIT"
+    url: "http://opensource.org/licenses/MIT"
+host: "localhost:3006"
+basePath: "/"
+schemes:
+- "http"
+- "https"
+consumes:
+- "application/json"
+- "application/x-www-form-urlencoded"
+- "multipart/form-data"
+- "application/octet-stream"
+produces:
+- "application/json"
+paths:
+  /ingredients/retrieveAll:
+    get:
+      tags:
+      - "ingredient-controller"
+      operationId: "retrieveAllIngredients"
+      parameters: []
+      responses:
+        200:
+          description: "Succesful reponse"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/ingredient"
+      x-swagger-router-controller: "ingredient-controller"
+    x-swagger-router-controller: "ingredient-controller"
+  /food/retrieveAll:
+    get:
+      tags:
+      - "food-controller"
+      operationId: "retrieveAllFoods"
+      parameters: []
+      responses:
+        200:
+          description: "Succesful"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/food"
+      x-swagger-router-controller: "food-controller"
+    x-swagger-router-controller: "food-controller"
+  /request/retrieveAll:
+    get:
+      tags:
+      - "request-controller"
+      operationId: "retrieveAllRequests"
+      parameters: []
+      responses:
+        200:
+          description: "Succesful reponse"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/request"
+      x-swagger-router-controller: "request-controller"
+    x-swagger-router-controller: "request-controller"
+  /request/calculateRequest:
+    post:
+      tags:
+      - "request-controller"
+      description: "this route is used to calculate the values of request order"
+      operationId: "calculateRequest"
+      parameters:
+      - in: "body"
+        name: "requestList"
+        description: "List of foods to generate request"
+        required: false
+        schema:
+          $ref: "#/definitions/requestList"
+      responses:
+        200:
+          description: "Succesful update"
+          schema:
+            $ref: "#/definitions/request"
+      x-swagger-router-controller: "request-controller"
+    x-swagger-router-controller: "request-controller"
+  /request/updateIngredientsInToRequest:
+    post:
+      tags:
+      - "request-controller"
+      description: "this route is used to update the ingredients from food and recalculate\
+        \ the valus of request order"
+      operationId: "updateIngredientsInToRequest"
+      parameters:
+      - in: "body"
+        name: "dataTO"
+        required: false
+        schema:
+          $ref: "#/definitions/dataTO"
+      responses:
+        200:
+          description: "Success ingredients updated"
+          schema:
+            $ref: "#/definitions/request"
+      x-swagger-router-controller: "request-controller"
+    x-swagger-router-controller: "request-controller"
+  /request/updateStatus/{id}:
+    post:
+      tags:
+      - "request-controller"
+      operationId: "updateStatus"
+      parameters:
+      - name: "id"
+        in: "path"
+        required: true
+        type: "string"
+        format: "string"
+      responses:
+        200:
+          description: "Successful status updated"
+      x-swagger-router-controller: "request-controller"
+    x-swagger-router-controller: "request-controller"
+  /request/create:
+    post:
+      tags:
+      - "request-controller"
+      operationId: "create"
+      parameters:
+      - in: "body"
+        name: "dataTO"
+        required: false
+        schema:
+          $ref: "#/definitions/dataTO_1"
+      responses:
+        200:
+          description: "Successful request order created"
+      x-swagger-router-controller: "request-controller"
+    x-swagger-router-controller: "request-controller"
+definitions:
+  request:
+    type: "object"
+    properties:
+      requestDate:
+        type: "string"
+        format: "string"
+      price:
+        type: "number"
+        format: "double"
+      status:
+        type: "string"
+        format: "string"
+      number:
+        type: "string"
+        format: "string"
+      _id:
+        type: "string"
+        format: "string"
+      requestList:
+        type: "array"
+        description: "The array has food list"
+        items:
+          $ref: "#/definitions/food"
+    example:
+      number: "number"
+      requestList:
+      - price: 0.8008281904610115
+        name: "name"
+        ingredients:
+        - price: 0.8008281904610115
+          name: "name"
+          _id: "_id"
+        - price: 0.8008281904610115
+          name: "name"
+          _id: "_id"
+        _id: "_id"
+      - price: 0.8008281904610115
+        name: "name"
+        ingredients:
+        - price: 0.8008281904610115
+          name: "name"
+          _id: "_id"
+        - price: 0.8008281904610115
+          name: "name"
+          _id: "_id"
+        _id: "_id"
+      price: 0.8008281904610115
+      requestDate: "requestDate"
+      _id: "_id"
+      status: "status"
+  ingredient:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        format: "string"
+      price:
+        type: "number"
+        format: "double"
+      _id:
+        type: "string"
+        format: "string"
+    example:
+      price: 0.8008281904610115
+      name: "name"
+      _id: "_id"
+  food:
+    type: "object"
+    properties:
+      name:
+        type: "string"
+        format: "string"
+      _id:
+        type: "string"
+        format: "string"
+      price:
+        type: "number"
+        format: "double"
+      ingredients:
+        type: "array"
+        items:
+          $ref: "#/definitions/ingredient"
+    example:
+      price: 0.8008281904610115
+      name: "name"
+      ingredients:
+      - price: 0.8008281904610115
+        name: "name"
+        _id: "_id"
+      - price: 0.8008281904610115
+        name: "name"
+        _id: "_id"
+      _id: "_id"
+  requestList:
+    properties:
+      sources:
+        type: "array"
+        items:
+          $ref: "#/definitions/food"
+  dataTO:
+    type: "object"
+    properties:
+      ingredients:
+        type: "array"
+        items:
+          $ref: "#/definitions/ingredient"
+      food:
+        $ref: "#/definitions/food"
+      request:
+        $ref: "#/definitions/request"
+  dataTO_1:
+    type: "object"
+    properties:
+      request:
+        $ref: "#/definitions/request"
