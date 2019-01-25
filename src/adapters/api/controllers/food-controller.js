@@ -8,7 +8,8 @@ module.exports.retrieveAllFoods = function retrieveAllFoods (req, res, next) {
     .then(function (response) {
       utils.writeJson(res, response);
     })
-    .catch(function (response) {
+    .catch(function (response, error) {
+      console.log(response)
       utils.writeJson(res, response);
     });
 };

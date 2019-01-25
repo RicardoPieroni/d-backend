@@ -39,6 +39,7 @@ const options = {
 const spec = fs.readFileSync(path.join(__dirname,'./src/adapters/api/swagger.yaml'), 'utf8');
 const swaggerDoc = jsyaml.safeLoad(spec);
 
+const server = http.createServer(app);
 // Initialize the Swagger middleware
 swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
 
@@ -57,10 +58,16 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
     app.use(middleware.swaggerUi());
   
     // Start the server
-    http.createServer(app).listen(serverPort, function () {
+    server.listen(serverPort, function () {
       console.log('Your server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
       console.log('Swagger-ui is available on http://localhost:%d/docs', serverPort);
     });
   });
 
 });
+//module.exports = server;
+//module.exports = app;
+module.exports = {
+  app,
+  server
+}

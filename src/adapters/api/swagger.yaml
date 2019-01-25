@@ -171,22 +171,28 @@ definitions:
       requestList:
       - price: 0.8008281904610115
         name: "name"
+        amount: 1
         ingredients:
         - price: 0.8008281904610115
           name: "name"
+          amount: 1
           _id: "_id"
         - price: 0.8008281904610115
           name: "name"
+          amount: 1
           _id: "_id"
         _id: "_id"
       - price: 0.8008281904610115
         name: "name"
+        amount: 1
         ingredients:
         - price: 0.8008281904610115
           name: "name"
+          amount: 1
           _id: "_id"
         - price: 0.8008281904610115
           name: "name"
+          amount: 1
           _id: "_id"
         _id: "_id"
       price: 0.8008281904610115
@@ -199,6 +205,9 @@ definitions:
       name:
         type: "string"
         format: "string"
+      amount:
+        type: number
+        format: int64
       price:
         type: "number"
         format: "double"
@@ -208,6 +217,7 @@ definitions:
     example:
       price: 0.8008281904610115
       name: "name"
+      amount: 1
       _id: "_id"
   food:
     type: "object"
@@ -215,6 +225,9 @@ definitions:
       name:
         type: "string"
         format: "string"
+      amount:
+        type: number
+        format: int64
       _id:
         type: "string"
         format: "string"
@@ -228,12 +241,15 @@ definitions:
     example:
       price: 0.8008281904610115
       name: "name"
+      amount: 1
       ingredients:
       - price: 0.8008281904610115
         name: "name"
+        amount: 1
         _id: "_id"
       - price: 0.8008281904610115
         name: "name"
+        amount: 1
         _id: "_id"
       _id: "_id"
   requestList:

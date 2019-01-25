@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "prestart": "npm install",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "NODE_ENV=test babel-node ./node_modules/.bin/babel-istanbul cover _mocha --exit src/test/unit/**/**/**/*.js "
   },
   "keywords": [
     "swagger"
@@ -25,16 +26,24 @@
     "chai-http": "^4.2.1",
     "chai-things": "^0.2.0",
     "chance": "^1.0.18",
+    "connect": "^3.2.0",
     "dotenv-safe": "^6.1.0",
     "eslint": "^5.12.0",
-    "connect": "^3.2.0",
     "js-yaml": "^3.3.0",
+    "killable": "^1.0.1",
     "mocha": "^5.2.0",
+    "mocha-swagger-tests": "^1.0.0",
+    "moment": "^2.24.0",
     "mongodb": "^3.1.12",
     "mongoose": "^5.4.5",
+    "node-mocks-http": "^1.7.3",
+    "preq": "^0.5.7",
     "rosie": "^2.0.1",
     "sinon": "^7.2.2",
     "sinon-chai": "^3.3.0",
+    "supertest": "^3.4.2",
+    "swagger-test": "^0.7.3",
+    "swagger-testing": "0.0.0",
     "swagger-tools": "0.10.1"
   }
 }
