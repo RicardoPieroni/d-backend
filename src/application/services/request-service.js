@@ -1,5 +1,6 @@
 
 import RequestDomain from '../domain/request';
+import FoodService from '../services/food-service';
 import Promise from 'bluebird';
 
 class RequestService {
@@ -51,16 +52,17 @@ class RequestService {
 
   }
 
-  promotionFilter() {
-    return this.retrieveAllFood()
-        .then((result) => {
-            const foodList = result;
-            const requestListUpdated = requestListTO.map((requestItem) => {
-                let food = foodList.find((item) => item._id === requestItem._id);
+  promotionFilter(requestListTO) {
+    const requestListUpdated = [];
+    return Promise.mapSeries(requestListTO, (requestItem) => {
+        return FoodService.retrieveFoodById(requestItem._id)
+            .then((foodResult) => {
+                let food = foodResult;
                 if (requestItem.name && requestItem.price) {
                     food = requestItem;
                 }
-                const ingredientesCloned = food.ingredients.map((ingredientItem) => {
+                const foodIngredients = food.ingredients;
+                const ingredientesCloned = foodIngredients.map((ingredientItem) => {
                         const ingredientCloned = JSON.parse(JSON.stringify(ingredientItem));
                         const { amount, name } = ingredientCloned;
                         switch (name) {
@@ -91,18 +93,15 @@ class RequestService {
                         return ingredientCloned;
                 });
                 requestItem.ingredients = ingredientesCloned;
-
-                return {
+                return Promise.resolve(requestListUpdated.push({
                     price: food.price,
                     amount: requestItem.amount,
                     name: food.name,
                     _id: requestItem._id,
                     ingredients: ingredientesCloned,
-                };
-            });
-            return Promise.resolve(requestListUpdated);
-    
-        });
+                }));
+        })
+    }).then(() => requestListUpdated);
   }
 
 }

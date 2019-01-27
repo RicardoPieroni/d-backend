@@ -9,7 +9,6 @@ module.exports.retrieveAllFoods = function retrieveAllFoods (req, res, next) {
       utils.writeJson(res, response);
     })
     .catch(function (response, error) {
-      console.log(response)
       utils.writeJson(res, response);
     });
 };

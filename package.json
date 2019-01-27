@@ -6,7 +6,7 @@
   "scripts": {
     "prestart": "npm install",
     "start": "node index.js",
-    "test": "NODE_ENV=test babel-node ./node_modules/.bin/babel-istanbul cover _mocha --exit src/test/unit/**/**/**/*.js "
+    "test": "NODE_ENV=test babel-node ./node_modules/.bin/babel-istanbul cover _mocha --exit src/test/unit/**/**/**/*.spec.js "
   },
   "keywords": [
     "swagger"
