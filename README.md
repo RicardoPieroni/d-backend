@@ -14,8 +14,8 @@ This server manage data to d-frontend
 
 > ACCESS_CONTROL_HEADERS="Origin, X-Requested-With, Content-Type, Accept, Authorization"
 
-* Must exec two commands to populate the database:
-> mongo mongo scripts/database/populate/ingredient-populate.js
+* Must exec two commands to populate the database (this commands should be executed on the root of project):
+> mongo scripts/database/populate/ingredient-populate.js
 
 > mongo scripts/database/populate/food-populate.js 
 
