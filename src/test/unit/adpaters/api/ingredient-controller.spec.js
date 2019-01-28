@@ -7,7 +7,7 @@ import { app, server } from '../../../../../app';
 
 testCommons.init()
 
-var requester = chai.request(app);
+const requester = chai.request(app);
 describe('ingredient-controller', () => {
     context('retrieveAllIngredients', () => {
         let resultData = null;

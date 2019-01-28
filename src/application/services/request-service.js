@@ -71,7 +71,7 @@ class RequestService {
   create(dataTO){
     dataTO.status = this.STATUS_ACTIVED;
     dataTO.requestDate = moment();
-    
+
     return RequestDomain.findOne().sort({requestDate : 1 })
     .then((result) => {
         if (result) {

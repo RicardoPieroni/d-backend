@@ -6,7 +6,6 @@ import IngredientDomain from '../../../application/domain/ingredient';
 import IngredientFactory from '../../lib/factories/ingredient-factory';
 import FoodFactory from '../../lib/factories/food-factory';
 import RequestFactory from '../../lib/factories/request-factory';
-import requestFactory from '../../lib/factories/request-factory';
 
 testCommons.init()
 
@@ -446,7 +445,7 @@ describe('request-service', () => {
     });
     context('updateStatus', () => {
         let resultData;
-        const request = requestFactory.build();
+        const request = RequestFactory.build();
         before(() => testCommons.resetTestDB()
             .then(() => RequestDomain.create(request))
             .then(() => requetService.updateStatus(request._id))
@@ -463,7 +462,7 @@ describe('request-service', () => {
 
     context('create', () => {
         let resultData;
-        const request = requestFactory.build();
+        const request = RequestFactory.build();
         before(() => testCommons.resetTestDB()
             .then(() => requetService.create(request))
             .then(() => RequestDomain.findOne())
