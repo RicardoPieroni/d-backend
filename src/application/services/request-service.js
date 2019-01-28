@@ -4,6 +4,7 @@ import FoodService from '../services/food-service';
 import IngredientService from '../services/ingredient-service';
 import Promise from 'bluebird';
 import moment from 'moment';
+import { ObjectID } from 'mongodb';
 
 class RequestService {
 
@@ -139,7 +140,7 @@ class RequestService {
 
   updateStatus(id) {
     const status = this.STATUS_CANCELED;
-    return RequestDomain.update({_id: id }, { $set: { status }});
+    return RequestDomain.update({_id: new ObjectID(id) }, { $set: { status }});
   }
 
   promotionFilter(requestListTO) {

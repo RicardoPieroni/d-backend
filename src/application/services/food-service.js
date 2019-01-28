@@ -1,4 +1,5 @@
 import FoodDomain from '../domain/food';
+import { ObjectID } from 'mongodb';
 
 class FoodService {
   retrieveAllFoods() {
@@ -6,7 +7,7 @@ class FoodService {
   }
 
   retrieveFoodById(id) {
-    return FoodDomain.findOne({ _id: id });
+    return FoodDomain.findOne({ _id: new ObjectID(id) });
   }
 }
 

@@ -47,6 +47,12 @@ swaggerTools.initializeMiddleware(swaggerDoc, function (middleware) {
   
     // Interpret Swagger resources and attach metadata to request - must be first in swagger-tools middleware chain
     app.use(middleware.swaggerMetadata());
+
+    app.use((req, res, next) => {
+      res.setHeader('Access-Control-Allow-Origin', config.express.accessControlUrl);
+      res.setHeader('Access-Control-Allow-Headers', config.express.accessControlHeaders);
+      next();
+  });
   
     // Validate Swagger requests
     app.use(middleware.swaggerValidator());

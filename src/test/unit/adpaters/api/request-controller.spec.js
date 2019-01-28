@@ -36,7 +36,7 @@ describe('request-controller', () => {
         const request = RequestFactory.build();
         before(() => testCommons.resetTestDB()
             .then(() => chai.request(app).post('/request/create')
-                        .send({dataTO: request})
+                        .send({dataTO: JSON.stringify(request)})
             )
             .then(() => RequestDomain.findOne())
             .then((result) => {
@@ -124,7 +124,7 @@ describe('request-controller', () => {
           before(() => testCommons.resetTestDB()
             .then(() => IngredientDomain.create(dataTO.food.ingredients))
             .then(() => chai.request(app).post('/request/updateIngredientsInToRequest')
-                        .send({ dataTO }))
+                        .send({ dataTO: JSON.stringify(dataTO) }))
             .then((result) => {
                 resultData = result.body;
                 return resultData;
@@ -172,7 +172,7 @@ describe('request-controller', () => {
         before(() => testCommons.resetTestDB()
             .then(() => FoodDomain.create(food))
             .then(() => chai.request(app).post('/request/calculateRequest')
-                        .send({ requestList: requestListTO }))
+                        .send({ requestList: JSON.stringify(requestListTO) }))
             .then((result) => {
                 resultData = result.body;
                 return resultData;
@@ -180,5 +180,4 @@ describe('request-controller', () => {
         specify(() => resultData.price.should.be.equals(6.5));
         after(() => testCommons.clearTestDB());
     });
-
 });

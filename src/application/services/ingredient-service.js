@@ -1,5 +1,5 @@
 import IngredientDomain from '../domain/ingredient';
-
+import { ObjectID } from 'mongodb';
 
 class IngredientService {
   retrieveAllIngredients() {
@@ -7,7 +7,7 @@ class IngredientService {
   }
 
   retrieveIngredientById(id) {
-    return IngredientDomain.findOne({ _id: id });
+    return IngredientDomain.findOne({ _id: new ObjectID(id) });
   }
 }
 

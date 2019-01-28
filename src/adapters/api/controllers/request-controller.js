@@ -5,7 +5,7 @@ import RequestService from '../../../application/services/request-service';
 
 module.exports.calculateRequest = function calculateRequest (req, res, next) {
   const requestList = req.swagger.params['requestList'].value;
-  RequestService.calculateRequest(requestList.requestList)
+  RequestService.calculateRequest(JSON.parse(requestList.requestList))
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -16,7 +16,7 @@ module.exports.calculateRequest = function calculateRequest (req, res, next) {
 
 module.exports.create = function create (req, res, next) {
   const dataTO = req.swagger.params['dataTO'].value;
-  RequestService.create(dataTO.dataTO)
+  RequestService.create(JSON.parse(dataTO.dataTO))
     .then(function (response) {
       utils.writeJson(res, response);
     })
@@ -37,7 +37,7 @@ module.exports.retrieveAllRequests = function retrieveAllRequests (req, res, nex
 
 module.exports.updateIngredientsInToRequest = function updateIngredientsInToRequest (req, res, next) {
   const dataTO = req.swagger.params['dataTO'].value;
-  RequestService.updateIngredientsInToRequest(dataTO.dataTO)
+  RequestService.updateIngredientsInToRequest(JSON.parse(dataTO.dataTO))
     .then(function (response) {
       utils.writeJson(res, response);
     })

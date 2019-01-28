@@ -34,7 +34,7 @@
     "mocha": "^5.2.0",
     "mocha-swagger-tests": "^1.0.0",
     "moment": "^2.24.0",
-    "mongodb": "^3.1.12",
+    "mongodb": "^3.1.13",
     "mongoose": "^5.4.5",
     "node-mocks-http": "^1.7.3",
     "preq": "^0.5.7",
