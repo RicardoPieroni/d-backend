@@ -19,7 +19,7 @@ class RequestService {
   }
 
   /**
- * this route is used to calculate the values of request order
+ * this service is used to calculate the values of request order
  *
  * requestList RequestList List of foods to generate request (optional)
  * returns request
